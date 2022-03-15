@@ -1,0 +1,63 @@
+{% assign A = page.date | date: "%A" %}
+  {% case A %}
+    {% when 'Sunday' %}Domingo, 
+    {% when 'Monday' %}Lunes,
+    {% when 'Thursday' %}Martes,
+    {% when 'Wednesday' %}Miércoles,
+    {% when 'Tuesday' %}Jueves,
+    {% when 'Friday' %}Viernes,
+    {% when 'Saturday' %}Sábado,
+  {% endcase A %}
+
+{{ page.date | date: "%-d" }}
+
+{% assign m = page.date | date: "%-m" %}
+  {% case m %}
+    {% when '1' %}de enero del
+    {% when '2' %}de febrero del
+    {% when '3' %}de marzo del
+    {% when '4' %}de abril del
+    {% when '5' %}de mayo del
+    {% when '6' %}de junio del
+    {% when '7' %}de julio del
+    {% when '8' %}de agosto del
+    {% when '9' %}de septiembre del
+    {% when '10' %}de octubre del
+    {% when '11' %}de noviembre del
+    {% when '12' %}de diciembre del
+  {% endcase %}
+
+{{ page.date | date: "%Y" }}
+
+
+
+{% assign A = post.date | date: "%A" %}
+  {% case A %}
+    {% when 'Sunday' %}Domingo, 
+    {% when 'Monday' %}Lunes,
+    {% when 'Thursday' %}Martes,
+    {% when 'Wednesday' %}Miércoles,
+    {% when 'Tuesday' %}Jueves,
+    {% when 'Friday' %}Viernes,
+    {% when 'Saturday' %}Sábado,
+  {% endcase A %}
+
+{{ post.date | date: "%-d" }}
+
+{% assign m = post.date | date: "%-m" %}
+  {% case m %}
+    {% when '1' %}de enero del
+    {% when '2' %}de febrero del
+    {% when '3' %}de marzo del
+    {% when '4' %}de abril del
+    {% when '5' %}de mayo del
+    {% when '6' %}de junio del
+    {% when '7' %}de julio del
+    {% when '8' %}de agosto del
+    {% when '9' %}de septiembre del
+    {% when '10' %}de octubre del
+    {% when '11' %}de noviembre del
+    {% when '12' %}de diciembre del
+  {% endcase %}
+
+{{ post.date | date: "%Y" }}

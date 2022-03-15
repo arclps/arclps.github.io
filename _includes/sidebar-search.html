@@ -1,0 +1,42 @@
+
+<h3>Buscar en el sitio</h3>
+<div id="site_search">
+    <input style="width:96%" type="text" id="search_box" placeholder="Buscar...">
+</div>
+
+<ul id="search_results"></ul>
+
+<style>
+#search_box{
+  width: 100%;
+  border-radius: 6px;
+  outline: pink;
+}
+#search_results{
+  font-size: 1rem;
+  list-style-type: none;
+  padding-top:10px;
+  max-width: 95%;}
+
+span{
+  font-size: .7rem;
+  color: #474747;
+}
+
+</style>
+
+
+<script src="{{ assets_base_url }}/assets/js/simple-jekyll-search.min.js"></script>
+
+<script type="text/javascript">
+SimpleJekyllSearch({
+    searchInput: document.getElementById('search_box'),
+    resultsContainer: document.getElementById('search_results'),
+    json: '{{ site.url }}/search.json',
+    searchResultTemplate: '<li><a href="{url}">{title} <small>{subtitle}</small></a></li>',
+    noResultsText: 'Sin resultados:c',
+    limit: {{ site.simple_jekyll_search.limit }},
+    fuzzy: true,
+    exclude: ['Archivo']
+})
+</script>

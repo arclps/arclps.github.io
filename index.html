@@ -1,0 +1,133 @@
+---
+layout: default
+css: ['pages/index.css']
+comments: false
+---
+  <section class="container">
+      <div class="columns">
+          <div class="column two-thirds" >
+              <ol class="repo-list">
+                {% for post in site.posts %}
+                {% if paginator.page == 1 %}
+                {% if post.pinned == true %}
+                <li class="repo-list-item">
+
+                  {% for cat in post.categories %}
+                  <div class="meta-info">
+                    <a class="little post-cat" href="{{ site.url }}/categorias/#{{ cat }}" title="{{ cat }}">[{{ cat }}]</a>
+                  </div>
+                  {% endfor %}
+                      
+                  {% if post.title == "" %}<div><h2 class="visually-hidden">{{ post.title }}</h2>
+                  {% else %}
+                  <div class="titulo subtitulo excerpt">  
+                      <a href="{{ site.url }}{{ post.url }}">
+                      <h2 class="post-title"><span class="flag-pinned">🐔 </span>{{ post.title | default: "" }}</h2>
+                      {% if post.subtitle %}<small class="post-subtitle">{{ post.subtitle}}</small>{% endif %}
+                      </a>
+                    {% endif %}
+                    
+                    <p class="post-excerpt">
+                    {{ post.excerpt | strip_html | strip }}
+                    {% if post.content.size > post.excerpt.size %}
+                    <a class="little" href="{{ site.url }}{{ post.url }}">(Seguir Leyendo)</a>
+                    {% endif %}
+                    </p>
+                  </div>
+                  
+                  <div class="meta-info">
+                    <a class="little post-date" href="{{ site.url }}{{ post.url }}"><time>{% include fechas-largas.html %}</time>
+                      <span class="visually-hidden">Enlace al post "{{ post.title }}"</span>
+                    </a>
+                    <br>
+                    {% for tag in post.tags %}
+                    <a class="little post-tag" href="{{ site.url }}/tags/#{{ tag }}" title="{{ tag }}">{{ tag | replace: "-"," " }}</a>
+                    {% endfor %}
+                  </div>
+                  
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+
+                {% for post in paginator.posts %}
+                {% if post.pinned != true %}
+                <li class="repo-list-item">
+
+                  {% for cat in post.categories %}
+                  <span class="meta-info">
+                    <a class="little post-cat" href="{{ site.url }}/categorias/#{{ cat }}" title="{{ cat }}">[{{ cat }}]</a>
+                  </span>
+                  {% endfor %}
+
+                  {% if post.title == "" %}<div><h2 class="visually-hidden">{{ post.title }}</h2>
+                  {% else %}
+                  <div class="titulo subtitulo excerpt">
+                      <a href="{{ site.url }}{{ post.url }}">
+                      <h2 class="post-title">{{ post.title | default: "" }}</h2>
+                      {% if post.subtitle %}<small class="post-subtitle">{{ post.subtitle}}</small>{% endif %}
+                      </a>
+                    {% endif %}
+                    
+                    <p class="post-excerpt">
+                    {{ post.excerpt | strip_html | strip }}
+                    {% if post.content.size > post.excerpt.size %}
+                    <a class="little" href="{{ site.url }}{{ post.url }}">(Seguir Leyendo)</a>
+                    {% endif %}
+                    </p>
+                  </div>
+                  
+                  <div class="meta-info">
+                    <a class="little post-date" href="{{ site.url }}{{ post.url }}"><time>{% include fechas-largas.html %}</time>
+                      <span class="visually-hidden">Enlace al post "{{ post.title }}"</span>
+                    </a>
+                    <br>
+                    {% for tag in post.tags %}
+                    <a class="little post-tag" href="{{ site.url }}/tags/#{{ tag }}" title="{{ tag }}">{{ tag | replace: "-"," " }}</a>
+                    {% endfor %}
+                  </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ol>
+          </div>
+          <div class="column one-third">
+              {% include sidebar-search.html %}
+              {% include sidebar-categories-cloud.html %}
+              <!-- {% include sidebar-ad.html %}
+              {% include sidebar-popular-repo.html %} -->
+          </div>
+      </div>
+      <div class="pagination text-center">
+        <div class="btn-group">
+          {% if paginator.previous_page %}
+            {% if paginator.previous_page == 1 %}
+                <a href="{{ site.url }}/" class="btn btn-outline">&laquo;</a>
+            {% else %}
+                <a href="{{ site.url }}/page{{paginator.previous_page}}"  class="btn btn-outline">&laquo;</a>
+            {% endif %}
+          {% else %}
+              <button disabled="disabled" href="javascript:;" class="btn btn-outline">&laquo;</button>
+          {% endif %}
+          {% if paginator.page == 1 %}
+              <a href="javascript:;" class="active btn btn-outline">1</a>
+          {% else %}
+              <a href="{{ site.url }}/"  class="btn btn-outline">1</a>
+          {% endif %}
+          {% for count in (2..paginator.total_pages) %}
+            {% if count == paginator.page %}
+                <a href="javascript:;"  class="active btn btn-outline">{{count}}</a>
+            {% else %}
+                <a href="{{ site.url }}/page{{count}}"  class="btn btn-outline">{{count}}</a>
+            {% endif %}
+          {% endfor %}
+          {% if paginator.next_page %}
+              <a href="{{ site.url }}/page{{paginator.next_page}}"  class="btn btn-outline">&raquo;</a>
+          {% else %}
+              <button disabled="disabled" href="javascript:;" class="btn btn-outline">&raquo;</button>
+          {% endif %}
+          </div>
+      </div>
+      <!-- /pagination -->
+  </section>
+<!-- /section.content -->
